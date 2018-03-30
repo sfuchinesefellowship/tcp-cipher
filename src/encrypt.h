@@ -5,21 +5,35 @@ using namespace std;
 class encrypt {
     public:
         encrypt();
-        encrypt(int seg, int shift) : segment(seg), shift(shift) {};
+        encrypt(string _plaintext, string _key) : plaintext(_plaintext), key(_key) {};
         ~encrypt();
-        string ShuffleEncrypt(string plaintext, int pos);
-        string ShuffleDecrypt(string plaintext, int pos);
+        string ShuffleEncrypt(string& subTable, string& plaintext);
+        string ShuffleDecrypt(string& subTable, string& plaintext);
 
         string TransEncrypt(string plaintext, int key);
         string TransDecrypt(string plaintext, int key);
         string VernamEncrypt(string plaintext, int key);
         string VernamDecrypt(string plaintext, int key);
+        
+        char toUpper(char ch);
+
         char toLower(char ch);
-        int MOD(int num);
+
+        void swap(string& key, int i, int j);
+        void swapColumns(char **matrix, int i, int j, int rows);
+        void freeMatrix(char **matrix, int rows, int columns);
+        int determineRank(string str, int index, int size);
+        void printMatrix(char **matrix, string key, int rows, int columns)
+        void Curses_printMatrix(char **matrix, string key, int rows, int columns, int r, int c);
+        void powerExponentiationModulus(int base, int exponent, int modulo)
+       
 
     private:
-        int segment; // The length of segment for split the plaintext
-        int shift; // The shift of the characters to map a to
+
+        string key;
+        string plaintext;
+        string cyphertext;
+        string subTable = "ZYXWVUTSRQPONMLKJIHGFEDCBA";
 
 };
 
